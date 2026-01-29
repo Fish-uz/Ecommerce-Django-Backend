@@ -1,0 +1,26 @@
+{% extends 'inventario/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 p-4">
+            <h2 class="text-center fw-bold mb-4">Iniciar Sesión</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label fw-bold small">USUARIO</label>
+                    <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold small">CONTRASEÑA</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-warning fw-bold">Entrar a Framazon</button>
+                </div>
+            </form>
+            <p class="text-center mt-3 small">¿Nuevo aquí? <a href="{% url 'registro' %}">Regístrate</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

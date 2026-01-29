@@ -1,0 +1,44 @@
+{% extends 'inventario/base.html' %}
+
+{% block title %}Mi Carrito - Mini Amazon{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+        <h2 class="mb-4">🛒 Tu Carrito de Compras</h2>
+        
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td><strong>{{ item.producto.nombre }}</strong></td>
+                    <td>{{ item.cantidad }}</td>
+                    <td>${{ item.producto.precio }}</td>
+                    <td>${{ item.subtotal }}</td>
+                    <td class="text-center">
+                        <a href="{% url 'eliminar_del_carrito' item.producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-end mt-4">
+            <h3 class="fw-bold">Total: <span class="text-success">${{ total_general }}</span></h3>
+            <hr>
+            <a href="{% url 'tienda' %}" class="btn btn-secondary me-2">Seguir Comprando</a>
+            <a href="{% url 'vaciar_carrito' %}" class="btn btn-outline-danger me-2">Vaciar Carrito</a>
+            <button class="btn btn-primary px-4">Finalizar Compra</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
